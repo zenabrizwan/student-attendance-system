@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+    line-height: 100%;
+	margin: 0em;
+}
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+	position: absolute;
+	height:auto;
+	width: 100%;
+	background-image: url(
+	"https://cdn.firstcry.com/education/2022/06/21192250/776289724.jpg");
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  top: 100px;
+  max-width: 500px;
+  padding: 16px;
+  border: double;
+  background-color: white;
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+<div class="bg-img">
+<form action="studentSignUpConnect.php" method="post" >
+  <div class="container">
+    <h1><small>Student Sign-up</small></h1>
+
+    <label for="fullName"><b>Full Name</b></label>
+    <input type="text" placeholder="Enter Full Name" name="Name" pattern="[A-Za-z ]+\w{4,25}" required>
+	
+	<label for="gName"><b>Guardian Name</b></label>
+    <input type="text" placeholder="Enter Guardian Name" name="GuardianName" pattern="[A-Za-z ]+\w{4,25}" required>
+	
+	<label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="Email" pattern="[a-z0-9]\w{4,50}@[a-z]\w{4,10}.[a-z]\w{2,10}"required>
+	
+    <label for="RollNo"><b>Roll Number</b></label>
+    <input type="text" placeholder="Enter Roll Number" name="RollNo" pattern="[0-9]\w{0,4}" required>
+	
+	<label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" pattern="[a-z0-9]\w{5,8}" required>
+   
+    <label for="gender"><b>Gender</b></label>
+    <input type="text" placeholder="Enter Gender" name="Gender" pattern="[A-Za-z ]+\w{3,25}" required>
+    
+	<label for="Nationality"><b>Nationality</b></label>
+    <input type="text" placeholder="Enter Nationality" name="Nationality" pattern="[A-Za-z ]+\w{4,25}" required>
+        
+	<label for="Address"><b>Address</b></label>
+    <input type="text" placeholder="Enter Address" name="Address" pattern="[A-Z0-9 ]+\w{4,100}" required>
+        
+	<label for="SocietyID"><b>SocietyID</b></label>
+    <input type="text" placeholder="Enter SocietyID" name="SocietyID" pattern="[0-9 ]+\w{0,5}" required>
+        
+	<label for="GradeID"><b>GradeID</b></label>
+    <input type="text" placeholder="Enter GradeID" name="GradeID" pattern="[0-9 ]+\w{0,5}" required>
+    
+	<label for="phone"><b>Phone Number</b></label><br>
+    <input type="tel" id="phone" name="PhoneNo" placeholder="1234-1234567" pattern="[0-9]{4}-[0-9]{7}" required><br>
+    <small>Format: 1234-1234567</small>
+	<br/><br/>
+    <label for="Class"><b>Class</b></label>
+	<br/>
+    <input type="int" placeholder="Enter Class" name="Class" pattern="[1-10]\w{0,1}" required>
+    <br/> <br/>
+    <label for="dateOfBirth"><b>Date of Birth</b></label><br>
+    <input type="date" id="dateOfBirth" name="dateOfBirth" required><br><br>
+    <br/>
+    <button type="submit" class="btn">Sign-up</button>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<?php
+include("connect.php");
+$showAlert = false;
+$showError = false;
+$exists=false;
+	
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id = $_POST['TeacherID'];  
+    $password = $_POST['Password'];  
+      
+        //to prevent from mysqli injection  
+        $id = stripcslashes($id);    
+        $password = stripcslashes($password);  
+        $id = mysqli_real_escape_string($conn, $id);  
+        $password = mysqli_real_escape_string($conn, $password);  
+      
+        $sql = "select * from teachers_information where TeacherID = '$id' and Password= '$password'";  
+        $result = mysqli_query($conn, $sql);  
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+        //$id = $row['TeacherID'];
+        $count = mysqli_num_rows($result);  
+		if($count == 1){  
+			//header("Location: http://localhost/dbPro/homeTeacher.php?TeacherID=" . urlencode($id));
+			header("Location: http://localhost/dbPro/teacher-info.php?TeacherID=" . urlencode($id));
+			header("Location: http://localhost/dbPro/ScheduleTeacher.php?TeacherID=" . urlencode($id));
+			header("Location: http://localhost/dbPro/TeacherGradeBook.php?TeacherID=" . urlencode($id));
+			header("Location: http://localhost/dbPro/TeacherTranscript.php?TeacherID=" . urlencode($id));
+			header("Location: http://localhost/dbPro/TeacherAttendence.php?TeacherID=" . urlencode($id));
+			header("Location: http://localhost/dbPro/StudentAttendence.php?TeacherID=" . urlencode($id));
+			header("Location: http://localhost/dbPro/homeTeacher.php?TeacherID=" . urlencode($id));
+
+		}  
+		else{  
+			$error_message = "Login failed. Invalid Credentials. Try Again";
+			echo "<script type='text/javascript'>alert('$error_message');</script>";
+		}
+
+}		
+?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+    line-height: 100%;
+	margin: 0em;
+}
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+    position: absolute;
+	height:100%;
+	width: 100%;
+	background-image: url(
+	"https://cdn.firstcry.com/education/2022/06/21192250/776289724.jpg");
+	background-size: cover;
+	background-position: center;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+  padding: 16px;
+  backdrop-filter: blur(20px);
+  border: double;
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.btn {
+background-color: #04AA6D;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+</style>
+</head>
+<body>
+<div class="bg-img">
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <form action="" class="container" method="POST">
+    <h1>Teacher Login</h1>
+
+    <label for="TeacherID"><b>TeacherID</b></label>
+    <input type="text" placeholder="Enter TeacherID" name="TeacherID" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="Password" required>
+       <br>
+      <br>
+      <button type="submit" class="btn">Login</button>
+ 
+  </form>
+
+</div>
+</body>
+</html>

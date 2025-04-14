@@ -1,0 +1,30 @@
+<?php 
+	$id = $_POST['TeacherID'];
+	$fullName = $_POST['Name'];
+	$email = $_POST['Email'];
+	$psw = $_POST['Password'];
+	$gen=$_POST['Gender'];
+	$sub=$_POST['Subject'];
+	$sta=$_POST['Status'];
+	$National=$_POST['Nationality'];
+	$add=$_POST['Address'];
+	$number = $_POST['PhoneNo'];
+	$dob = $_POST['DateOfBirth'];
+
+	// Database connection
+	$conn = new mysqli('localhost','root','','dbpro');
+	if($conn->connect_error){
+		echo "$conn->connect_error";
+		die("Connection Failed : ". $conn->connect_error);
+	} else {
+		$stmt = $conn->prepare("insert into teachers_information(TeacherID,Name,Email,Password,Gender,Subject,Status,Nationality,Address, PhoneNo,DateOfBirth) values(?,?,?,?,?,?,?,?,?,?,?)");
+		$stmt->bind_param("sssssssssss",$id, $fullName,$email,$psw,$gen,$sub,$sta,$National,$add,$number,$dob);
+		$execval = $stmt->execute();
+		echo $execval;
+		//echo "Registration successfully...";
+		header("Location:https://localhost:44343/home" ,true);
+		exit();
+		$stmt->close();
+		$conn->close();
+	}
+?>
